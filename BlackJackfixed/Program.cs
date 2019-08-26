@@ -317,7 +317,7 @@ namespace BlackJackwh
                             jack++;
                             if (jack >= 2)
                             {
-                                Console.WriteLine("Two Black Jack's today smell like robber");
+                                Console.WriteLine("Two Black Jack's today, smell like robber");
                             }
                             Thread.Sleep(1500);
                             continue;
