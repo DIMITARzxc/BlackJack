@@ -38,6 +38,65 @@ namespace BlackJackwh
         public CardsScore Visage { get; set; }
         public int Value { get; set; }
     }
+    public class List
+    {
+        private static int _index;
+        private object[] _arr;
+        private int _capacity = 4;
+        public int Count;
+        public List(int capacity)
+        {
+
+            _capacity = capacity;
+            _arr = new object[capacity];
+        }
+        public List()
+        {
+            InitArray();
+        }
+        private void InitArray()
+        {
+            object[] tmpArr = _arr;
+            _arr = new object[_capacity];
+            if (_arr != null)
+            {
+                for (int i = 0; i < tmpArr.Length; i++)
+                {
+                    _arr[i] = tmpArr[i];
+                }
+            }
+        }
+
+        public void Add(object value)
+        {
+
+            if (_index == _capacity)
+            {
+                _capacity *= 2;
+                InitArray();
+            }
+            _arr[_index] = value;
+            _index++;
+
+        }
+        public object this[int key]
+        {
+            get
+            {
+                return _arr[key];
+            }
+        }
+
+        public void Insert(object value)
+        {
+            if (_index == _capacity)
+            {
+                _arr[++_index] = value;
+
+            }
+        }
+
+    }
 
     public class Table
     {
@@ -45,9 +104,9 @@ namespace BlackJackwh
 
         public Table()
         {
-            this.Do();
+            this.Initalize();
         }
-        public void Mix()
+        public void Shuffle()
         {
             Random rnd = new Random();
             int a = cards.Count;
@@ -60,7 +119,7 @@ namespace BlackJackwh
                 cards[a] = card;
             }
         }
-        public void Do()
+        public void Initalize()
         {
             cards = new List<Card>();
 
@@ -84,8 +143,8 @@ namespace BlackJackwh
         {
             if (cards.Count <= 0)
             {
-                this.Do();
-                this.Mix();
+                this.Initalize();
+                this.Shuffle();
             }
 
             Card cardToReturn = cards[cards.Count - 1];
@@ -142,7 +201,7 @@ namespace BlackJackwh
 
             while (sCoins > 0)
             {
-                DealHand();
+                DealerHand();
                 Console.WriteLine("\nPress any key for the next hand...\n");
                 ConsoleKeyInfo userInput = Console.ReadKey(true);
             }
@@ -151,7 +210,7 @@ namespace BlackJackwh
             Console.ReadLine();
         }
 
-        static void DealHand()
+        static void DealerHand()
         {
             if (table.RemainingCrads() < 20)
             {
@@ -267,7 +326,7 @@ namespace BlackJackwh
                 }
                 else
                 {
-                    Console.WriteLine("Dealer does not have a blackjack, moving on...\n");
+                    Console.WriteLine("Computer does not have a blackjack, moving on...\n");
                 }
             }
 
@@ -379,7 +438,7 @@ namespace BlackJackwh
 
                             if (dealerCardsValue > playerCardValue)
                             {
-                                Console.WriteLine("Computer has {0} and player has {1}, dealer wins!", dealerCardsValue, playerCardValue);
+                                Console.WriteLine("Computer has {0} and player has {1}, computer wins!", dealerCardsValue, playerCardValue);
                                 sCoins -= betCost;
                                 return;
                             }
@@ -391,9 +450,6 @@ namespace BlackJackwh
                             }
                         }
 
-
-                    default:
-                        break;
                 }
 
                 Console.ReadLine();
