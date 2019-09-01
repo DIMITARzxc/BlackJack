@@ -197,7 +197,7 @@ namespace BlackJackwh
             Console.WriteLine($"Your money {money}$ convert to silent coins x2\n Current silent coins:{sCoins}¤");
             Console.ResetColor();
             table = new Table();
-            table.Mix();
+            table.Shuffle();
 
             while (sCoins > 0)
             {
@@ -214,8 +214,8 @@ namespace BlackJackwh
         {
             if (table.RemainingCrads() < 20)
             {
-                table.Do();
-                table.Mix();
+                table.Initalize();
+                table.Shuffle();
             }
 
             Console.WriteLine("Remaining Cards: {0}", table.RemainingCrads());
