@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace BlackJackwh
 {
 
-
     public enum CardsScore
     {
         Ace,
@@ -38,7 +37,6 @@ namespace BlackJackwh
         public CardsScore Visage { get; set; }
         public int Value { get; set; }
     }
-    
 
     public class Table
     {
@@ -61,7 +59,6 @@ namespace BlackJackwh
                 cards[a] = card;
             }
         }
-        
         public void Initalize()
         {
             cards = new List<Card>();
@@ -79,8 +76,6 @@ namespace BlackJackwh
                 }
             }
         }
-
-
 
         public Card Draw()
         {
@@ -108,11 +103,6 @@ namespace BlackJackwh
         {
             return cards.Count;
         }
-
-
-
-
-
     }
 
     class Program
@@ -128,8 +118,7 @@ namespace BlackJackwh
 
         static void Main(string[] args)
         {
-           
-
+ 
             Console.Title = "© Blackjack Game by Nedilko";
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("♥♦♣♠SILENT CASINO♠♣♦♥");
@@ -162,7 +151,6 @@ namespace BlackJackwh
                 table.Initalize();
                 table.Shuffle();
             }
-
             Console.WriteLine("Remaining Cards: {0}", table.RemainingCrads());
             Console.WriteLine($"Current Silent Coins: {sCoins}¤");
             Console.WriteLine("Bet some Silent Coins (1¤ - {0}¤)", sCoins);
@@ -205,7 +193,6 @@ namespace BlackJackwh
                     break;
                 }
             }
-
             Console.WriteLine("™Computer™");
             Console.WriteLine("Card 1: {0} of {1}", computerHand[0].Visage, computerHand[1].Costume);
             Console.WriteLine("Card 2: [Hole Card]");
@@ -394,7 +381,6 @@ namespace BlackJackwh
                                 return;
                             }
                         }
-
                 }
 
                 Console.ReadLine();
