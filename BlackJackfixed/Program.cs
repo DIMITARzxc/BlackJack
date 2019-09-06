@@ -38,65 +38,7 @@ namespace BlackJackwh
         public CardsScore Visage { get; set; }
         public int Value { get; set; }
     }
-    public class List
-    {
-        private static int _index;
-        private object[] _arr;
-        private int _capacity = 4;
-        public int Count;
-        public List(int capacity)
-        {
-
-            _capacity = capacity;
-            _arr = new object[capacity];
-        }
-        public List()
-        {
-            InitArray();
-        }
-        private void InitArray()
-        {
-            object[] tmpArr = _arr;
-            _arr = new object[_capacity];
-            if (_arr != null)
-            {
-                for (int i = 0; i < tmpArr.Length; i++)
-                {
-                    _arr[i] = tmpArr[i];
-                }
-            }
-        }
-
-        public void Add(object value)
-        {
-
-            if (_index == _capacity)
-            {
-                _capacity *= 2;
-                InitArray();
-            }
-            _arr[_index] = value;
-            _index++;
-
-        }
-        public object this[int key]
-        {
-            get
-            {
-                return _arr[key];
-            }
-        }
-
-        public void Insert(object value)
-        {
-            if (_index == _capacity)
-            {
-                _arr[++_index] = value;
-
-            }
-        }
-
-    }
+    
 
     public class Table
     {
@@ -119,6 +61,7 @@ namespace BlackJackwh
                 cards[a] = card;
             }
         }
+        
         public void Initalize()
         {
             cards = new List<Card>();
@@ -153,6 +96,7 @@ namespace BlackJackwh
         }
         public void PrintDeck()
         {
+            
             int i = 1;
             foreach (Card card in cards)
             {
@@ -184,6 +128,7 @@ namespace BlackJackwh
 
         static void Main(string[] args)
         {
+           
 
             Console.Title = "© Blackjack Game by Nedilko";
             Console.ForegroundColor = ConsoleColor.Green;
