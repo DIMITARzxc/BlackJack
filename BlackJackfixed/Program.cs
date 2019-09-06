@@ -11,10 +11,6 @@ namespace BlackJackwh
     public enum CardsScore
     {
         Ace,
-        Two,
-        Three,
-        Four,
-        Five,
         Six,
         Seven,
         Eight,
@@ -52,8 +48,9 @@ namespace BlackJackwh
             int a = cards.Count;
             while (a > 1)
             {
+               
+                int p = rnd.Next(a);
                 a--;
-                int p = rnd.Next(a + 1);
                 Card card = cards[p];
                 cards[p] = cards[a];
                 cards[a] = card;
@@ -77,7 +74,7 @@ namespace BlackJackwh
             }
         }
 
-        public Card Draw()
+        public Card Draw()//draw,sort and shuffle cards method 
         {
             if (cards.Count <= 0)
             {
@@ -99,6 +96,10 @@ namespace BlackJackwh
                 i++;
             }
         }
+        public void Check()
+        {
+           
+        }
         public int RemainingCrads()
         {
             return cards.Count;
@@ -115,6 +116,7 @@ namespace BlackJackwh
         static Table table;
         static List<Card> myHand;
         static List<Card> computerHand;
+        private static int totalCardsValue;
 
         static void Main(string[] args)
         {
@@ -142,6 +144,10 @@ namespace BlackJackwh
 
             Console.WriteLine("Money is over, see you next time...");
             Console.ReadLine();
+        }
+        static void Check()
+        {
+           
         }
 
         static void DealerHand()
@@ -227,16 +233,13 @@ namespace BlackJackwh
             if (computerHand[0].Visage == CardsScore.Ace || computerHand[0].Value == 10)
             {
                 Console.WriteLine("™Computer™ check his  blackjack...\n");
-                Thread.Sleep(2000);
                 if (computerHand[0].Value + computerHand[1].Value == 21)
                 {
                     Console.WriteLine("™Computer™");
                     Console.WriteLine("Card 1: {0} of {1}", computerHand[0].Visage, computerHand[1].Costume);
                     Console.WriteLine("Card 2: {0} of {1}", computerHand[1].Visage, computerHand[1].Costume);
                     Console.WriteLine("Total: {0}\n", computerHand[0].Value + computerHand[1].Value);
-
                     Thread.Sleep(2000);
-
                     int amountLost = 0;
 
                     if (myHand[0].Value + myHand[1].Value == 21 && insurance)
